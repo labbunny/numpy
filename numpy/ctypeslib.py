@@ -147,9 +147,9 @@ else:
             if os.path.exists(libpath):
                 try:
                     return ctypes.cdll[libpath]
-                except OSError:
+                except OSError as e:
                     ## defective lib file
-                    raise
+                    raise ValueError("defective lib file") as e
         ## if no successful return in the libname_ext loop:
         raise OSError("no file with expected extension")
 
